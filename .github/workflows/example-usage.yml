@@ -1,0 +1,27 @@
+name: "Example: PyGate Quality Gates"
+
+# Copy this workflow into your repository as .github/workflows/pygate.yml
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write  # Required for PR comments
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0  # Required for changed file detection
+
+      - uses: roli-lpci/pygate/.github/actions/pygate@main
+        with:
+          mode: canary          # or "full" to include tests
+          repair: "true"        # attempt auto-repair on failures
+          max-attempts: 3
+          python-version: "3.12"
+          post-comment: "true"  # post findings as PR comment

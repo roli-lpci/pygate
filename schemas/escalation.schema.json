@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "status": {
+      "default": "escalated",
+      "title": "Status",
+      "type": "string"
+    },
+    "reason_code": {
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    },
+    "evidence": {
+      "additionalProperties": true,
+      "title": "Evidence",
+      "type": "object"
+    }
+  },
+  "required": [
+    "reason_code",
+    "message"
+  ],
+  "title": "Escalation",
+  "type": "object"
+}

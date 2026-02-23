@@ -1,0 +1,170 @@
+{
+  "$defs": {
+    "ActionScope": {
+      "enum": [
+        "single_file",
+        "multi_file",
+        "cross_module"
+      ],
+      "title": "ActionScope",
+      "type": "string"
+    },
+    "EscalationInfo": {
+      "properties": {
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "reason_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason Code"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        }
+      },
+      "required": [
+        "required"
+      ],
+      "title": "EscalationInfo",
+      "type": "object"
+    },
+    "PriorityAction": {
+      "properties": {
+        "finding_id": {
+          "title": "Finding Id",
+          "type": "string"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/ActionScope"
+        },
+        "target_files": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Files",
+          "type": "array"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "finding_id",
+        "action",
+        "scope",
+        "rationale"
+      ],
+      "title": "PriorityAction",
+      "type": "object"
+    },
+    "RetryPolicy": {
+      "properties": {
+        "max_attempts": {
+          "title": "Max Attempts",
+          "type": "integer"
+        },
+        "max_patch_lines": {
+          "title": "Max Patch Lines",
+          "type": "integer"
+        },
+        "abort_on_no_improvement": {
+          "title": "Abort On No Improvement",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_attempts",
+        "max_patch_lines",
+        "abort_on_no_improvement"
+      ],
+      "title": "RetryPolicy",
+      "type": "object"
+    },
+    "RunMode": {
+      "enum": [
+        "canary",
+        "full"
+      ],
+      "title": "RunMode",
+      "type": "string"
+    },
+    "RunStatus": {
+      "enum": [
+        "pass",
+        "fail"
+      ],
+      "title": "RunStatus",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "#/$defs/RunMode"
+    },
+    "status": {
+      "$ref": "#/$defs/RunStatus"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "priority_actions": {
+      "items": {
+        "$ref": "#/$defs/PriorityAction"
+      },
+      "title": "Priority Actions",
+      "type": "array"
+    },
+    "retry_policy": {
+      "$ref": "#/$defs/RetryPolicy"
+    },
+    "escalation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EscalationInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "run_id",
+    "mode",
+    "status",
+    "summary",
+    "priority_actions",
+    "retry_policy"
+  ],
+  "title": "AgentBrief",
+  "type": "object"
+}

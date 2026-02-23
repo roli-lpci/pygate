@@ -1,0 +1,50 @@
+{
+  "status": "escalated",
+  "reason_code": "NO_IMPROVEMENT",
+  "message": "No measurable improvement for 2 consecutive attempt(s).",
+  "evidence": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "patch_lines": 4,
+        "before_findings": 3,
+        "after_findings": 1,
+        "improved": true,
+        "worsened": false,
+        "status": "fail",
+        "actions": [
+          {
+            "rule_id": "RUFF_AUTOFIX",
+            "strategy": "deterministic_prefix",
+            "accepted": true,
+            "command": "ruff check --fix src/auth.py src/middleware.py",
+            "exit_code": 0,
+            "files": ["src/auth.py", "src/middleware.py"],
+            "rationale": "Apply safe ruff fixes on scoped files to clear auto-fixable lint issues."
+          }
+        ]
+      },
+      {
+        "attempt": 2,
+        "patch_lines": 0,
+        "before_findings": 1,
+        "after_findings": 1,
+        "improved": false,
+        "worsened": false,
+        "status": "fail",
+        "actions": []
+      },
+      {
+        "attempt": 3,
+        "patch_lines": 0,
+        "before_findings": 1,
+        "after_findings": 1,
+        "improved": false,
+        "worsened": false,
+        "status": "fail",
+        "actions": []
+      }
+    ],
+    "latest_failures_path": ".pygate/failures.json"
+  }
+}

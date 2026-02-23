@@ -1,0 +1,104 @@
+{
+  "version": "1.0.0",
+  "run_id": "run_20260223140000_a1b2c3d4",
+  "mode": "canary",
+  "status": "fail",
+  "timestamp": "2026-02-23T14:00:00.000000+00:00",
+  "repo": "https://github.com/example/my-project.git",
+  "branch": "feature/add-auth",
+  "changed_files": [
+    "src/auth.py",
+    "src/middleware.py",
+    "tests/test_auth.py"
+  ],
+  "gates": [
+    {
+      "name": "lint",
+      "status": "fail",
+      "duration_ms": 342
+    },
+    {
+      "name": "typecheck",
+      "status": "fail",
+      "duration_ms": 1580
+    },
+    {
+      "name": "test",
+      "status": "skipped",
+      "duration_ms": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "ruff_F401_src/auth.py_3_0",
+      "gate": "lint",
+      "severity": "high",
+      "summary": "F401: `os` imported but unused",
+      "files": ["src/auth.py"],
+      "rule": "F401",
+      "line": 3,
+      "column": 8,
+      "actual": 1,
+      "threshold": 0,
+      "status": "fail",
+      "raw": {
+        "fix_applicability": "safe",
+        "url": "https://docs.astral.sh/ruff/rules/unused-import"
+      }
+    },
+    {
+      "id": "ruff_E501_src/middleware.py_47_1",
+      "gate": "lint",
+      "severity": "high",
+      "summary": "E501: Line too long (132 > 120)",
+      "files": ["src/middleware.py"],
+      "rule": "E501",
+      "line": 47,
+      "column": 121,
+      "actual": 1,
+      "threshold": 0,
+      "status": "fail",
+      "raw": {
+        "fix_applicability": null,
+        "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+      }
+    },
+    {
+      "id": "pyright_reportAttributeAccessIssue_src/auth.py_22",
+      "gate": "typecheck",
+      "severity": "high",
+      "summary": "reportAttributeAccessIssue: Cannot access attribute \"validate\" for class \"Token\"",
+      "files": ["src/auth.py"],
+      "rule": "reportAttributeAccessIssue",
+      "line": 22,
+      "column": 12,
+      "actual": 1,
+      "threshold": 0,
+      "status": "fail",
+      "raw": {
+        "pyright_severity": "error",
+        "range": {
+          "start": {"line": 21, "character": 11},
+          "end": {"line": 21, "character": 19}
+        }
+      }
+    }
+  ],
+  "inferred_hints": [
+    {
+      "finding_id": "ruff_F401_src/auth.py_3_0",
+      "hint": "Start with the deterministic gate failure in lint. Inspect command output in run-metadata traces.",
+      "confidence": "low"
+    },
+    {
+      "finding_id": "ruff_E501_src/middleware.py_47_1",
+      "hint": "Start with the deterministic gate failure in lint. Inspect command output in run-metadata traces.",
+      "confidence": "low"
+    },
+    {
+      "finding_id": "pyright_reportAttributeAccessIssue_src/auth.py_22",
+      "hint": "Start with the deterministic gate failure in typecheck. Inspect command output in run-metadata traces.",
+      "confidence": "low"
+    }
+  ]
+}

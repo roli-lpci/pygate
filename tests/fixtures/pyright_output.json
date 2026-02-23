@@ -1,0 +1,53 @@
+{
+  "version": "1.1.390",
+  "time": "0.5s",
+  "generalDiagnostics": [
+    {
+      "file": "/tmp/project/src/foo.py",
+      "severity": "error",
+      "message": "Cannot access member \"bar\" for type \"Foo\"",
+      "range": {
+        "start": {"line": 10, "character": 4},
+        "end": {"line": 10, "character": 15}
+      },
+      "rule": "reportAttributeAccessIssue"
+    },
+    {
+      "file": "/tmp/project/src/foo.py",
+      "severity": "error",
+      "message": "Argument of type \"int\" cannot be assigned to parameter of type \"str\"",
+      "range": {
+        "start": {"line": 25, "character": 8},
+        "end": {"line": 25, "character": 12}
+      },
+      "rule": "reportArgumentType"
+    },
+    {
+      "file": "/tmp/project/src/utils.py",
+      "severity": "warning",
+      "message": "Variable \"x\" is not accessed",
+      "range": {
+        "start": {"line": 3, "character": 0},
+        "end": {"line": 3, "character": 1}
+      },
+      "rule": "reportUnusedVariable"
+    },
+    {
+      "file": "/tmp/project/src/utils.py",
+      "severity": "information",
+      "message": "Type of \"result\" is \"int\"",
+      "range": {
+        "start": {"line": 5, "character": 0},
+        "end": {"line": 5, "character": 6}
+      },
+      "rule": "reportGeneralClassIssues"
+    }
+  ],
+  "summary": {
+    "filesAnalyzed": 10,
+    "errorCount": 2,
+    "warningCount": 1,
+    "informationCount": 1,
+    "timeInSec": 0.5
+  }
+}

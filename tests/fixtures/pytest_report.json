@@ -1,0 +1,57 @@
+{
+  "created": 1700000000.0,
+  "duration": 2.5,
+  "exitcode": 1,
+  "root": "/tmp/project",
+  "environment": {
+    "Python": "3.12.0",
+    "Platform": "Darwin-24.0.0"
+  },
+  "summary": {
+    "passed": 8,
+    "failed": 2,
+    "total": 10,
+    "collected": 10
+  },
+  "tests": [
+    {
+      "nodeid": "tests/test_math.py::test_add",
+      "outcome": "passed",
+      "setup": {"duration": 0.001, "outcome": "passed"},
+      "call": {"duration": 0.01, "outcome": "passed"},
+      "teardown": {"duration": 0.001, "outcome": "passed"}
+    },
+    {
+      "nodeid": "tests/test_math.py::test_divide_by_zero",
+      "outcome": "failed",
+      "setup": {"duration": 0.001, "outcome": "passed"},
+      "call": {
+        "duration": 0.045,
+        "outcome": "failed",
+        "longrepr": "def test_divide_by_zero():\n        result = divide(10, 0)\n>       assert result == 0\nE       ZeroDivisionError: division by zero\n\ntests/test_math.py:15: ZeroDivisionError",
+        "crash": {
+          "path": "/tmp/project/tests/test_math.py",
+          "lineno": 15,
+          "message": "ZeroDivisionError: division by zero"
+        }
+      },
+      "teardown": {"duration": 0.001, "outcome": "passed"}
+    },
+    {
+      "nodeid": "tests/test_api.py::test_get_user",
+      "outcome": "failed",
+      "setup": {"duration": 0.001, "outcome": "passed"},
+      "call": {
+        "duration": 0.123,
+        "outcome": "failed",
+        "longrepr": "def test_get_user():\n        response = client.get('/users/1')\n>       assert response.status_code == 200\nE       AssertionError: assert 404 == 200\n\ntests/test_api.py:25: AssertionError",
+        "crash": {
+          "path": "/tmp/project/tests/test_api.py",
+          "lineno": 25,
+          "message": "AssertionError: assert 404 == 200"
+        }
+      },
+      "teardown": {"duration": 0.001, "outcome": "passed"}
+    }
+  ]
+}

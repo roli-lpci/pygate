@@ -1,0 +1,47 @@
+# PyGate artifacts
+.pygate/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+.venv/
+.tox/
+.nox/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Linting / type checking
+.ruff_cache/
+.mypy_cache/
+.pyright/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+
+# Generated eval output
+eval/eval_results.json
+
+# Claude Code
+.claude/

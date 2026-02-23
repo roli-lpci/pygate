@@ -1,0 +1,43 @@
+{
+  "run_id": "run_20260223140000_a1b2c3d4",
+  "mode": "canary",
+  "started_at": "2026-02-23T14:00:00.000000+00:00",
+  "completed_at": "2026-02-23T14:00:02.120000+00:00",
+  "duration_ms": 2120,
+  "config_source": "pygate.toml",
+  "environment": {
+    "python_version": "3.12.3",
+    "platform": "linux",
+    "virtualenv": "/home/runner/work/my-project/.venv",
+    "resolver": "uv",
+    "installed_packages": {
+      "pygate-ci": "0.1.0",
+      "ruff": "0.9.6",
+      "pyright": "1.1.395",
+      "pytest": "8.3.4",
+      "pydantic": "2.10.6"
+    }
+  },
+  "command_traces": [
+    {
+      "command": "ruff check --output-format json --exclude .pygate .",
+      "cwd": "/home/runner/work/my-project",
+      "started_at": "2026-02-23T14:00:00.050000+00:00",
+      "duration_ms": 342,
+      "exit_code": 1,
+      "timed_out": false,
+      "stdout": "[{\"code\":\"F401\",\"message\":\"`os` imported but unused\",\"filename\":\"/home/runner/work/my-project/src/auth.py\",\"location\":{\"row\":3,\"column\":8},\"fix\":{\"applicability\":\"safe\"}}]",
+      "stderr": "Found 2 errors."
+    },
+    {
+      "command": "pyright --outputjson .",
+      "cwd": "/home/runner/work/my-project",
+      "started_at": "2026-02-23T14:00:00.400000+00:00",
+      "duration_ms": 1580,
+      "exit_code": 1,
+      "timed_out": false,
+      "stdout": "{\"generalDiagnostics\":[{\"file\":\"/home/runner/work/my-project/src/auth.py\",\"severity\":\"error\",\"rule\":\"reportAttributeAccessIssue\",\"message\":\"Cannot access attribute \\\"validate\\\" for class \\\"Token\\\"\",\"range\":{\"start\":{\"line\":21,\"character\":11},\"end\":{\"line\":21,\"character\":19}}}]}",
+      "stderr": ""
+    }
+  ]
+}

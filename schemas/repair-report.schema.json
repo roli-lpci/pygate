@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "RepairAttempt": {
+      "properties": {
+        "attempt": {
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "patch_lines": {
+          "title": "Patch Lines",
+          "type": "integer"
+        },
+        "before_findings": {
+          "title": "Before Findings",
+          "type": "integer"
+        },
+        "after_findings": {
+          "title": "After Findings",
+          "type": "integer"
+        },
+        "improved": {
+          "title": "Improved",
+          "type": "boolean"
+        },
+        "worsened": {
+          "title": "Worsened",
+          "type": "boolean"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "actions": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "attempt",
+        "patch_lines",
+        "before_findings",
+        "after_findings",
+        "improved",
+        "worsened",
+        "status"
+      ],
+      "title": "RepairAttempt",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "status": {
+      "title": "Status",
+      "type": "string"
+    },
+    "attempts": {
+      "items": {
+        "$ref": "#/$defs/RepairAttempt"
+      },
+      "title": "Attempts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "RepairReport",
+  "type": "object"
+}

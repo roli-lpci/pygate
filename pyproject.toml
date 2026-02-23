@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pygate-ci"
+version = "0.1.0"
+description = "Deterministic quality gate CLI for Python projects with bounded auto-repair and escalation evidence"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Hermes Labs", email = "lpcisystems@gmail.com" },
+]
+keywords = [
+    "python", "quality-gate", "ci", "lint", "typecheck", "pytest",
+    "auto-repair", "deterministic", "ruff", "pyright",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.0,<3",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-json-report>=1.5",
+    "ruff>=0.4",
+    "pyright>=1.1",
+]
+
+[project.scripts]
+pygate = "pygate.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/roli-lpci/pygate"
+Documentation = "https://github.com/roli-lpci/pygate#readme"
+Repository = "https://github.com/roli-lpci/pygate"
+Issues = "https://github.com/roli-lpci/pygate/issues"
+Changelog = "https://github.com/roli-lpci/pygate/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/pygate"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pygate"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

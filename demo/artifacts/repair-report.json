@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "attempts": [
+    {
+      "attempt": 1,
+      "patch_lines": 4,
+      "before_findings": 3,
+      "after_findings": 1,
+      "improved": true,
+      "worsened": false,
+      "status": "fail",
+      "actions": [
+        {
+          "rule_id": "RUFF_AUTOFIX",
+          "strategy": "deterministic_prefix",
+          "accepted": true,
+          "command": "ruff check --fix src/auth.py src/middleware.py",
+          "exit_code": 0,
+          "files": ["src/auth.py", "src/middleware.py"],
+          "rationale": "Apply safe ruff fixes on scoped files to clear auto-fixable lint issues."
+        },
+        {
+          "rule_id": "RUFF_FORMAT",
+          "strategy": "deterministic_prefix",
+          "accepted": true,
+          "command": "ruff format src/auth.py src/middleware.py",
+          "exit_code": 0,
+          "files": ["src/auth.py", "src/middleware.py"],
+          "rationale": "Apply ruff formatting on scoped files."
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "patch_lines": 0,
+      "before_findings": 1,
+      "after_findings": 1,
+      "improved": false,
+      "worsened": false,
+      "status": "fail",
+      "actions": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "code": "F401",
+    "end_location": {"column": 10, "row": 1},
+    "filename": "/tmp/project/src/foo.py",
+    "fix": {"applicability": "safe", "edits": [{"content": "", "end_location": {"column": 1, "row": 2}, "location": {"column": 1, "row": 1}}], "message": "Remove import: `os`"},
+    "location": {"column": 8, "row": 1},
+    "message": "`os` imported but unused",
+    "noqa_row": 1,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "code": "E501",
+    "end_location": {"column": 150, "row": 10},
+    "filename": "/tmp/project/src/foo.py",
+    "fix": null,
+    "location": {"column": 121, "row": 10},
+    "message": "Line too long (150 > 120)",
+    "noqa_row": 10,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "code": "W291",
+    "end_location": {"column": 25, "row": 5},
+    "filename": "/tmp/project/src/bar.py",
+    "fix": {"applicability": "safe", "edits": []},
+    "location": {"column": 20, "row": 5},
+    "message": "Trailing whitespace",
+    "noqa_row": 5,
+    "url": "https://docs.astral.sh/ruff/rules/trailing-whitespace"
+  }
+]

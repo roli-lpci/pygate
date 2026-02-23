@@ -1,0 +1,50 @@
+name: Bug Report
+description: Report a bug in PyGate
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to reproduce the issue
+      placeholder: |
+        1. Create a project with...
+        2. Run `pygate run --mode canary --changed-files ...`
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Artifacts
+      description: Paste relevant contents of `.pygate/failures.json`, `escalation.json`, or error output
+      render: json
+
+  - type: input
+    id: version
+    attributes:
+      label: PyGate Version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      placeholder: "3.12.1"
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: "macOS 15.3 / Ubuntu 24.04 / Windows 11"

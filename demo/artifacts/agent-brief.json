@@ -1,0 +1,39 @@
+{
+  "run_id": "run_20260223140000_a1b2c3d4",
+  "mode": "canary",
+  "status": "fail",
+  "summary": "3 deterministic finding(s) require repair.",
+  "priority_actions": [
+    {
+      "finding_id": "ruff_F401_src/auth.py_3_0",
+      "action": "Apply targeted ruff fixes and re-run lint deterministically.",
+      "scope": "single_file",
+      "target_files": ["src/auth.py"],
+      "rationale": "lint failed deterministically. Address this before any inferred optimizations."
+    },
+    {
+      "finding_id": "ruff_E501_src/middleware.py_47_1",
+      "action": "Apply targeted ruff fixes and re-run lint deterministically.",
+      "scope": "single_file",
+      "target_files": ["src/middleware.py"],
+      "rationale": "lint failed deterministically. Address this before any inferred optimizations."
+    },
+    {
+      "finding_id": "pyright_reportAttributeAccessIssue_src/auth.py_22",
+      "action": "Resolve Pyright type errors for impacted files and re-run typecheck.",
+      "scope": "single_file",
+      "target_files": ["src/auth.py"],
+      "rationale": "typecheck failed deterministically. Address this before any inferred optimizations."
+    }
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "max_patch_lines": 150,
+    "abort_on_no_improvement": 2
+  },
+  "escalation": {
+    "required": true,
+    "reason_code": "UNRESOLVED_DETERMINISTIC_FAILURES",
+    "message": "Escalate with evidence packet if bounded repair loop cannot clear deterministic failures."
+  }
+}
