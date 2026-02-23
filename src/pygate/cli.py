@@ -36,12 +36,6 @@ def _build_parser() -> argparse.ArgumentParser:
     rep_p = sub.add_parser("repair", help="Run bounded repair loop")
     rep_p.add_argument("--input", required=True, help="Path to failures.json")
     rep_p.add_argument("--max-attempts", type=int, default=None, help="Maximum repair attempts")
-    rep_p.add_argument(
-        "--deterministic-only",
-        action="store_true",
-        default=False,
-        help="Only apply deterministic fixes (skip model-assisted repair)",
-    )
 
     return parser
 

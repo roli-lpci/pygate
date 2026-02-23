@@ -1,6 +1,6 @@
 # PyGate
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/roli-lpci/pygate/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
 [![CI](https://github.com/roli-lpci/pygate/actions/workflows/ci.yml/badge.svg)](https://github.com/roli-lpci/pygate/actions/workflows/ci.yml)
 
@@ -41,6 +41,8 @@ pygate summarize --input .pygate/failures.json
 pygate repair --input .pygate/failures.json --max-attempts 3
 ```
 
+> **Note:** The PyPI package is `pygate-ci` but the CLI command is `pygate`.
+
 ## What It Does
 
 PyGate runs deterministic quality gates on your Python project and produces structured, machine-readable artifacts designed for both humans and AI agents.
@@ -55,15 +57,18 @@ PyGate runs deterministic quality gates on your Python project and produces stru
 
 ### How It Works
 
-```mermaid
-flowchart LR
-    A[Changed Files] --> B[Run Gates]
-    B --> C{Findings?}
-    C -- No --> D[Pass ✓]
-    C -- Yes --> E[Repair Loop]
-    E --> F{Improved?}
-    F -- Fixed --> D
-    F -- No --> G[Escalate with Evidence]
+```
+Changed Files ──> Run Gates ──> Findings? ──No──> Pass
+                                    |
+                                   Yes
+                                    |
+                                    v
+                              Repair Loop ──> Improved? ──Fixed──> Pass
+                                                  |
+                                                  No
+                                                  |
+                                                  v
+                                        Escalate with Evidence
 ```
 
 1. You tell PyGate which files changed (from your CI diff, PR, etc.)
@@ -82,8 +87,6 @@ pygate repair --input .pygate/failures.json [--max-attempts N]
 
 **Exit codes:** `0` = pass, `1` = fail (`run`), `2` = escalated (`repair`)
 
-> **Note:** The PyPI package is `pygate-ci` but the CLI command is `pygate`.
-
 ## Artifacts
 
 All artifacts are written to `.pygate/`:
@@ -97,7 +100,7 @@ All artifacts are written to `.pygate/`:
 | `repair-report.json` | Repair attempt history (on success) |
 | `escalation.json` | Escalation reason and evidence (on failure) |
 
-JSON Schema files for all artifact types are available in [`schemas/`](schemas/) for downstream validation and code generation. See [`demo/artifacts/`](demo/artifacts/) for sample output.
+JSON Schema files for all artifact types are available in [`schemas/`](https://github.com/roli-lpci/pygate/tree/main/schemas) for downstream validation and code generation. See [`demo/artifacts/`](https://github.com/roli-lpci/pygate/tree/main/demo/artifacts) for sample output.
 
 ## Repair Loop
 
@@ -197,8 +200,8 @@ The action detects changed files from the PR, runs gates, optionally repairs, an
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+See [CONTRIBUTING.md](https://github.com/roli-lpci/pygate/blob/main/CONTRIBUTING.md) for development setup and guidelines.
 
 ## License
 
-[Apache 2.0](LICENSE)
+[Apache 2.0](https://github.com/roli-lpci/pygate/blob/main/LICENSE)

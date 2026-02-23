@@ -206,20 +206,6 @@ class TestCLIEdgeCases:
         assert exc.value.code == 0
         assert mock_repair.call_args.kwargs["max_attempts"] == 5
 
-    @patch("pygate.cli.execute_repair")
-    def test_repair_deterministic_only_flag_accepted(self, mock_repair, tmp_path: Path):
-        mock_repair.return_value = {"status": "pass", "attempts": []}
-        with pytest.raises(SystemExit) as exc:
-            main(
-                [
-                    "repair",
-                    "--input",
-                    str(tmp_path / "f.json"),
-                    "--deterministic-only",
-                ]
-            )
-        assert exc.value.code == 0
-
     def test_invalid_mode_rejected(self):
         with pytest.raises(SystemExit) as exc:
             main(["run", "--mode", "invalid", "--changed-files", "f.txt"])
