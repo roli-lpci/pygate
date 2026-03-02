@@ -15,7 +15,7 @@ Thank you for your interest in contributing to PyGate! This guide will help you 
 
 ```bash
 git clone https://github.com/roli-lpci/quick-gate-python.git
-cd pygate
+cd quick-gate-python
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
