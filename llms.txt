@@ -1,0 +1,41 @@
+# Quick Gate Python (pygate-ci)
+
+> Deterministic quality gate CLI for Python projects. Runs ruff, pyright, and pytest with structured JSON output. Bounded auto-repair mode fixes lint issues automatically (max 3 attempts). Produces machine-readable escalation evidence for AI agents. Python 3.10+, Apache 2.0.
+
+## Docs
+
+- [README](https://github.com/roli-lpci/quick-gate-python/blob/main/README.md): Install, commands, configuration, CI integration, architecture, escalation schema
+- [CHANGELOG](https://github.com/roli-lpci/quick-gate-python/blob/main/CHANGELOG.md): Version history
+- [CONTRIBUTING](https://github.com/roli-lpci/quick-gate-python/blob/main/CONTRIBUTING.md): Development setup, PR guidelines
+
+## Commands
+
+The CLI has three subcommands:
+- `pygate run` -- Run quality gates (ruff + pyright + pytest), output structured JSON
+- `pygate repair` -- Auto-fix lint failures with bounded retry loop (max-attempts configurable)
+- `pygate summarize` -- Generate agent-readable brief from gate results
+
+## Core Modules
+
+- [CLI](https://github.com/roli-lpci/quick-gate-python/blob/main/src/pygate/cli.py): Argument parsing, subcommand dispatch
+- [Run Command](https://github.com/roli-lpci/quick-gate-python/blob/main/src/pygate/run_command.py): Orchestrates gate execution, collects results
+- [Repair Command](https://github.com/roli-lpci/quick-gate-python/blob/main/src/pygate/repair_command.py): Bounded auto-repair loop with ruff --fix
+- [Summarize Command](https://github.com/roli-lpci/quick-gate-python/blob/main/src/pygate/summarize_command.py): Agent brief generation from JSON artifacts
+- [Gates](https://github.com/roli-lpci/quick-gate-python/tree/main/src/pygate/gates): Individual gate implementations (ruff, pyright, pytest)
+- [Models](https://github.com/roli-lpci/quick-gate-python/blob/main/src/pygate/models.py): Pydantic models for all structured output
+
+## Schemas
+
+- [Failures Schema](https://github.com/roli-lpci/quick-gate-python/blob/main/schemas/failures.schema.json): JSON schema for gate failure output
+- [Escalation Schema](https://github.com/roli-lpci/quick-gate-python/blob/main/schemas/escalation.schema.json): JSON schema for escalation evidence
+- [Repair Report Schema](https://github.com/roli-lpci/quick-gate-python/blob/main/schemas/repair-report.schema.json): JSON schema for auto-repair results
+- [Agent Brief Schema](https://github.com/roli-lpci/quick-gate-python/blob/main/schemas/agent-brief.schema.json): JSON schema for summarize output
+
+## GitHub Action
+
+- [Action Definition](https://github.com/roli-lpci/quick-gate-python/blob/main/.github/actions/pygate/action.yml): Composite GitHub Action for CI integration
+
+## Optional
+
+- [Security Policy](https://github.com/roli-lpci/quick-gate-python/blob/main/SECURITY.md): Vulnerability reporting
+- [Demo Artifacts](https://github.com/roli-lpci/quick-gate-python/tree/main/demo/artifacts): Example JSON output from each command
